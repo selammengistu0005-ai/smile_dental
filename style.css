@@ -194,3 +194,79 @@ body.dark-mode .jaw-image {
     padding-left: 10px;
     min-height: 45px;
 }
+
+/* 6. Media Queries for Tablets and Phones */
+@media (max-width: 768px) {
+    
+    /* Shrink the Theme Toggle */
+    header {
+        padding: 10px 15px;
+    }
+    
+    .toggle-container {
+        width: 35px;
+        height: 35px;
+    }
+
+    .toggle-container img {
+        width: 35px !important; /* Forces smaller size */
+    }
+
+    /* Shrink the Hero / Dental Smile Section */
+    .hero h1 {
+        font-size: 2rem; 
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 20px; /* Prevents text from touching edges */
+    }
+
+    .jaw-image {
+        width: 280px; /* Balanced size for mid-range screens */
+    }
+
+    /* Shrink the Tracker Container */
+    .tracker-container {
+        position: relative; /* Un-pins it from the corner for better mobile flow */
+        width: 90%;
+        max-width: 400px;
+        margin: 40px auto 20px auto; /* Centers it below the hero section */
+        right: auto;
+        bottom: auto;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .tracker-container h3 {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    /* Shrink the Day Boxes & Advice */
+    .day-box {
+        padding: 6px 2px;
+        font-size: 0.7rem;
+    }
+
+    .info-box {
+        font-size: 0.8rem;
+        min-height: 40px;
+        text-align: center;
+        border-left: none;
+        border-top: 3px solid var(--accent-color);
+        padding: 10px 0 0 0;
+    }
+}
+
+/* Extra small tweak for very tiny phones */
+@media (max-width: 400px) {
+    .jaw-image {
+        width: 220px;
+    }
+    
+    .day-box {
+        font-size: 0.6rem;
+    }
+}
