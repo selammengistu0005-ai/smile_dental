@@ -1,0 +1,196 @@
+/* 1. Theme Variables */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #007bff;
+    --hero-text: #444444;
+    --transition-speed: 0.3s;
+}
+
+/* These values apply when the 'dark-mode' class is added to the body */
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --accent-color: #3498db;
+    --hero-text: #cccccc;
+}
+
+/* 2. General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. Toggle Position */
+header {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end; /* Pushes toggle to the right corner */
+}
+
+.toggle-container {
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.toggle-container:hover {
+    transform: scale(1.1);
+}
+
+.toggle-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* 4. Main Content Layout */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--hero-text);
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+.toggle-container img {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.toggle-container img:hover {
+    filter: drop-shadow(0 0 8px var(--accent-color));
+}
+/* Styling for the central jaw image */
+.image-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.jaw-image {
+    max-width: 100%;
+    height: auto;
+    width: 400px; /* Adjust this value to make the image larger or smaller */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+}
+
+/* Subtle hover effect */
+.jaw-image:hover {
+    transform: scale(1.02);
+}
+
+/* Ensure the image remains visible in dark mode */
+body.dark-mode .jaw-image {
+    filter: drop-shadow(0 10px 20px rgba(255,255,255,0.05));
+}
+
+.image-container {
+    position: relative; /* Necessary for absolute dots */
+    display: inline-block;
+}
+
+/* 5. Tracker Styles - Moved to the Far Right */
+.tracker-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;      /* Pins it to the far right */
+    width: 380px;     /* Keeps width consistent */
+    padding: 20px;
+    background: var(--bg-color);
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 100;
+}
+
+.tracker-container h3 {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.days-wrapper {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: nowrap;   /* Forces horizontal stacking */
+    gap: 6px;            
+    margin-bottom: 15px;
+}
+
+.day-box {
+    flex: 1;
+    padding: 10px 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.day-box.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(0, 123, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    color: var(--accent-color);
+}
+
+.info-box {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+    min-height: 45px;
+}
