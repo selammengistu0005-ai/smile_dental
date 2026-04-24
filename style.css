@@ -198,75 +198,86 @@ body.dark-mode .jaw-image {
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
     
-    /* Shrink the Theme Toggle */
+    /* 1. Force Smile Dental to the top */
+    main {
+        justify-content: flex-start; 
+        padding-top: 20px;
+    }
+
+    /* 2. Shrink the Theme Toggle */
     header {
         padding: 10px 15px;
     }
     
     .toggle-container {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
 
     .toggle-container img {
-        width: 35px !important; /* Forces smaller size */
+        width: 30px !important;
     }
 
-    /* Shrink the Hero / Dental Smile Section */
+    /* 3. Shrink the Hero / Dental Smile Section */
     .hero h1 {
-        font-size: 2rem; 
+        font-size: 1.6rem; /* Smaller Title */
         margin-bottom: 0.5rem;
     }
 
     .hero p {
-        font-size: 1rem;
-        padding: 0 20px; /* Prevents text from touching edges */
+        font-size: 0.9rem;
+        padding: 0 20px;
     }
 
     .jaw-image {
-        width: 280px; /* Balanced size for mid-range screens */
+        width: 180px; /* Smaller image to save space */
     }
 
-    /* Shrink the Tracker Container */
+    /* 4. Small Tracker on the BOTTOM LEFT */
     .tracker-container {
-        position: relative; /* Un-pins it from the corner for better mobile flow */
-        width: 90%;
-        max-width: 400px;
-        margin: 40px auto 20px auto; /* Centers it below the hero section */
-        right: auto;
-        bottom: auto;
-        padding: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        position: fixed; 
+        left: 15px;       /* Pinned to the left */
+        bottom: 30px;     /* Not at the absolute bottom */
+        right: auto;      /* Clear the right alignment */
+        width: 240px;     /* Much smaller width */
+        padding: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
     }
 
     .tracker-container h3 {
-        font-size: 0.85rem;
-        text-align: center;
+        font-size: 0.75rem; /* Smaller heading */
+        text-align: left;
     }
 
-    /* Shrink the Day Boxes & Advice */
+    /* 5. Shrink the Day Boxes & Advice */
     .day-box {
-        padding: 6px 2px;
-        font-size: 0.7rem;
+        padding: 5px 0;
+        font-size: 0.6rem; /* Smaller day text */
     }
 
     .info-box {
-        font-size: 0.8rem;
-        min-height: 40px;
-        text-align: center;
-        border-left: none;
-        border-top: 3px solid var(--accent-color);
-        padding: 10px 0 0 0;
+        font-size: 0.7rem; /* Smaller advice text */
+        min-height: 30px;
+        text-align: left;
+        border-top: none;
+        border-left: 3px solid var(--accent-color);
+        padding: 0 0 0 8px;
     }
 }
 
-/* Extra small tweak for very tiny phones */
+/* Extra small tweak for very narrow phones */
 @media (max-width: 400px) {
-    .jaw-image {
-        width: 220px;
+    .tracker-container {
+        width: 210px; /* Even narrower for tiny screens */
+        left: 10px;
     }
     
-    .day-box {
-        font-size: 0.6rem;
+    .jaw-image {
+        width: 150px;
+    }
+
+    .hero h1 {
+        font-size: 1.4rem;
     }
 }
