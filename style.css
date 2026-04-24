@@ -198,86 +198,88 @@ body.dark-mode .jaw-image {
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
     
-    /* 1. Force Smile Dental to the top */
+    /* 1. Reset Main Layout to push Branding to the top */
     main {
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start; 
         padding-top: 20px;
+        align-items: center;
+        height: auto; /* Allows content to flow naturally */
     }
 
-    /* 2. Shrink the Theme Toggle */
+    /* 2. Shrink Header and Toggle to save space */
     header {
         padding: 10px 15px;
     }
     
     .toggle-container {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
     }
 
-    .toggle-container img {
-        width: 30px !important;
+    /* 3. Scale down the Hero (Teeth & Title) */
+    .jaw-image {
+        width: 140px; /* Much smaller to leave room in the middle */
+        margin-bottom: 10px;
     }
 
-    /* 3. Shrink the Hero / Dental Smile Section */
     .hero h1 {
-        font-size: 1.6rem; /* Smaller Title */
+        font-size: 1.6rem; 
         margin-bottom: 0.5rem;
     }
 
     .hero p {
         font-size: 0.9rem;
         padding: 0 20px;
+        margin-bottom: 1.5rem;
     }
 
-    .jaw-image {
-        width: 180px; /* Smaller image to save space */
-    }
-
-    /* 4. Small Tracker on the BOTTOM LEFT */
+    /* 4. Position Tracker at the Bottom-Left */
     .tracker-container {
         position: fixed; 
-        left: 15px;       /* Pinned to the left */
-        bottom: 30px;     /* Not at the absolute bottom */
-        right: auto;      /* Clear the right alignment */
-        width: 240px;     /* Much smaller width */
+        left: 15px;       /* Pinned to the left side */
+        bottom: 20px;     /* Almost at the bottom */
+        right: auto;      /* This is CRITICAL: it removes the desktop right-pin */
+        width: 240px;     /* Narrower for mobile screens */
         padding: 12px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         z-index: 1000;
-    }
-
-    .tracker-container h3 {
-        font-size: 0.75rem; /* Smaller heading */
         text-align: left;
     }
 
-    /* 5. Shrink the Day Boxes & Advice */
+    /* 5. Shrink Tracker internal elements */
+    .tracker-container h3 {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+
     .day-box {
-        padding: 5px 0;
-        font-size: 0.6rem; /* Smaller day text */
+        padding: 6px 0;
+        font-size: 0.6rem;
     }
 
     .info-box {
-        font-size: 0.7rem; /* Smaller advice text */
-        min-height: 30px;
-        text-align: left;
-        border-top: none;
+        font-size: 0.7rem;
+        min-height: 35px;
         border-left: 3px solid var(--accent-color);
-        padding: 0 0 0 8px;
+        padding-left: 8px;
     }
 }
 
 /* Extra small tweak for very narrow phones */
 @media (max-width: 400px) {
     .tracker-container {
-        width: 210px; /* Even narrower for tiny screens */
+        width: 200px; /* Even narrower for tiny screens */
         left: 10px;
+        bottom: 10px;
     }
     
     .jaw-image {
-        width: 150px;
+        width: 120px;
     }
 
     .hero h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 }
