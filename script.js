@@ -60,3 +60,29 @@ dayBoxes.forEach(box => {
         }
     });
 });
+
+// --- Orbit Tail Animation Logic ---
+const paths = document.querySelectorAll('.orbit-path');
+
+paths.forEach((path, index) => {
+    // We vary the rotation slightly for each path via JS 
+    // to ensure they aren't all perfectly aligned
+    const speed = [6, 9, 12][index] || 10;
+    const tiltX = [70, 60, 80][index];
+    const tiltY = [10, -20, 30][index];
+
+    path.style.animation = `none`; // Reset
+    
+    // Create a unique keyframe for each path to handle the 3D tilt
+    const styleSheet = document.styleSheets[0];
+    const keyframeName = `dynamic-orbit-${index}`;
+    const keyframes = `
+        @keyframes ${keyframeName} {
+            from { transform: rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(0deg); }
+            to { transform: rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(360deg); }
+        }
+    `;
+    
+    styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+    path.style.animation = `${keyframeName} ${speed}s linear infinite`;
+});
