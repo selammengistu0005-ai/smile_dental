@@ -36,14 +36,14 @@ const dayBoxes = document.querySelectorAll('.day-box');
 const adviceBox = document.getElementById('brushing-advice');
 
 const adviceList = {
-    0: "Select the days you've brushed to get personalized advice!",
-    1: "Brushing once a week is a start, but aim for daily to prevent cavities!",
-    2: "You're getting there! Try to add a morning routine to these days.",
-    3: "Three days is better than none, but your enamel needs more protection.",
-    4: "Good progress! You're more than halfway to a healthy weekly habit.",
-    5: "Great job! Just two more days to reach a perfect weekly streak.",
-    6: "Excellent consistency! Your dentist will be very impressed.",
-    7: "Perfect! You're a dental health superstar. Keep up the 2x daily habit!"
+    0: "ጥርስዎን 🦷 በቀን ለምን ያህል ጊዜ 🪥 ይቦርሻሉ ❓!",
+    1: "በሳምንት አንድ ቀን መቦረሽ 🪥 ጥሩ ነው፣ ነገር ግን የጥርስ መበስበስን 🦷 ለመከላከል ሌላ ቀንም ይጨምሩ!",
+    2: "ጥሩ እካሄድ ነው! 🚶‍♂️ በእነዚህ ቀናት ላይ Floss ( ጥርስን በክር ማፅዳት ) ይሞክሩ።",
+    3: "በሳምንት ሶስት ቀን 🗓️ ከምንም ይሻላል፣ ነገር ግን የጥርስ ሽፋንዎ (enamel) 🛡️ ተጨማሪ መቦረሽ ያስፈልገዋል።",
+    4: "ጥሩ እድገት ነው! 📈 ጤናማ የሳምንት ልምድ 🔄 ለማዳበር ከግማሽ በላይ ደርሰዋል።",
+    5: "በጣም ጎበዝ! 🌟 የሳምንት ተከታታይነት ላይ ለመድረስ ሁለት ✌️ ቀናት ብቻ ቀርተውዎታል።",
+    6: "በጣም ግሩም ጥንካሬ ነው! 💪 ሲቦርሹ ምላሶንም 👅 አብሮ መቦረሽ እንዳይረሱ",
+    7: "እጅግ በጣም ጥሩ 👏 አሁን ደግሞ በቀን ሁለት ጊዜ ለመቦረሽ 🪥 ይሞክሩ"
 };
 
 dayBoxes.forEach(box => {
