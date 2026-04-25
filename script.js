@@ -61,28 +61,29 @@ dayBoxes.forEach(box => {
     });
 });
 
-// --- Orbit Tail Animation Logic ---
-const paths = document.querySelectorAll('.orbit-path');
+const orbitPaths = document.querySelectorAll('.orbit-path');
 
-paths.forEach((path, index) => {
-    // We vary the rotation slightly for each path via JS 
-    // to ensure they aren't all perfectly aligned
-    const speed = [6, 9, 12][index] || 10;
-    const tiltX = [70, 60, 80][index];
-    const tiltY = [10, -20, 30][index];
+// Different speeds (in seconds) to ensure they "exceed" each other
+const speeds = [5, 8, 12]; 
+const tilts = [
+    { x: 75, y: 10 },
+    { x: 65, y: -25 },
+    { x: 85, y: 35 }
+];
 
-    path.style.animation = `none`; // Reset
-    
-    // Create a unique keyframe for each path to handle the 3D tilt
+orbitPaths.forEach((path, i) => {
+    const keyframeName = `orbit-move-${i}`;
     const styleSheet = document.styleSheets[0];
-    const keyframeName = `dynamic-orbit-${index}`;
+    
     const keyframes = `
         @keyframes ${keyframeName} {
-            from { transform: rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(0deg); }
-            to { transform: rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(360deg); }
+            from { transform: rotateX(${tilts[i].x}deg) rotateY(${tilts[i].y}deg) rotateZ(0deg); }
+            to { transform: rotateX(${tilts[i].x}deg) rotateY(${tilts[i].y}deg) rotateZ(360deg); }
         }
     `;
-    
+
     styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-    path.style.animation = `${keyframeName} ${speed}s linear infinite`;
+    
+    // Apply speed and animation
+    path.style.animation = `${keyframeName} ${speeds[i]}s linear infinite`;
 });
