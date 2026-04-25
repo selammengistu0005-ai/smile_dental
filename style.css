@@ -196,86 +196,94 @@ body.dark-mode .jaw-image {
 }
 
 /* --- Orbit Animation Styles --- */
+/* --- Final Orbit Animation Styles --- */
+
 .orbit-wrapper {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 450px; /* Increased to accommodate larger orbits */
+    height: 450px;
     margin: 50px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px; /* Gives a 3D depth effect */
+    perspective: 1200px; /* Enhanced 3D depth */
 }
 
 .main-photo {
-    width: 150px; /* Adjust size of owner photo */
+    width: 180px; /* Slightly larger image to match wrapper */
     z-index: 10;
     position: relative;
+    border-radius: 50%;
 }
 
-/* This creates the fading tail effect */
 .orbit-path {
     position: absolute;
     border-radius: 50%;
-    /* The tail: a gradient that fades to transparent */
-    border: 2px solid transparent;
-    background: conic-gradient(from 0deg, var(--accent-color), transparent 60%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+    /* The fading tail effect */
+    border: 1px solid transparent; 
+    background: conic-gradient(from 0deg, var(--accent-color), transparent 70%);
+    /* Mask creates the thin line - only 1px wide */
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
 }
 
 .dot {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    /* BIGGER DOTS */
+    width: 22px; 
+    height: 22px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    box-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--accent-color);
-    top: -4px;
+    /* Enhanced Glow */
+    box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+    /* Centers the large dot on the thin line */
+    top: -11px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
 }
 
-/* Specific paths with different rotations and speeds */
+/* Sizes and Tilts for the paths.
+   Note: Speeds are handled by the JS logic we discussed, 
+   but we define the physical paths here.
+*/
 .path-1 { 
-    width: 250px; height: 250px; 
-    animation-duration: 6s; 
-    transform: rotateX(70deg) rotateY(10deg); 
+    width: 260px; 
+    height: 260px; 
 }
+
 .path-2 { 
-    width: 320px; height: 320px; 
-    animation-duration: 8s; 
-    transform: rotateX(60deg) rotateY(-20deg); 
+    width: 340px; 
+    height: 340px; 
 }
+
 .path-3 { 
-    width: 380px; height: 380px; 
-    animation-duration: 12s; 
-    transform: rotateX(80deg) rotateY(30deg); 
+    width: 420px; 
+    height: 420px; 
 }
 
-@keyframes rotate-orbit {
-    from { transform: rotateX(70deg) rotateY(10deg) rotateZ(0deg); }
-    to { transform: rotateX(70deg) rotateY(10deg) rotateZ(360deg); }
-}
-
-/* Correcting path-specific keyframes to maintain their tilt */
-.path-1 { animation-name: orbit-1; }
-.path-2 { animation-name: orbit-2; }
-.path-3 { animation-name: orbit-3; }
-
+/* Keyframes: We keep these specific to ensure the dots maintain 
+   their unique 3D tilt while rotating.
+*/
 @keyframes orbit-1 {
-    from { transform: rotateX(70deg) rotateY(10deg) rotateZ(0deg); }
-    to { transform: rotateX(70deg) rotateY(10deg) rotateZ(360deg); }
+    from { transform: rotateX(75deg) rotateY(10deg) rotateZ(0deg); }
+    to { transform: rotateX(75deg) rotateY(10deg) rotateZ(360deg); }
 }
+
 @keyframes orbit-2 {
-    from { transform: rotateX(60deg) rotateY(-20deg) rotateZ(0deg); }
-    to { transform: rotateX(60deg) rotateY(-20deg) rotateZ(360deg); }
+    from { transform: rotateX(65deg) rotateY(-25deg) rotateZ(0deg); }
+    to { transform: rotateX(65deg) rotateY(-25deg) rotateZ(360deg); }
 }
+
 @keyframes orbit-3 {
-    from { transform: rotateX(80deg) rotateY(30deg) rotateZ(0deg); }
-    to { transform: rotateX(80deg) rotateY(30deg) rotateZ(360deg); }
+    from { transform: rotateX(85deg) rotateY(35deg) rotateZ(0deg); }
+    to { transform: rotateX(85deg) rotateY(35deg) rotateZ(360deg); }
 }
+
+/* Assigning the unique animations with different speeds to ensure they exceed each other */
+.path-1 { animation: orbit-1 5s linear infinite; }
+.path-2 { animation: orbit-2 8s linear infinite; }
+.path-3 { animation: orbit-3 12s linear infinite; }
 
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
