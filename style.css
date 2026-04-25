@@ -195,6 +195,85 @@ body.dark-mode .jaw-image {
     min-height: 45px;
 }
 
+/* --- Orbit Animation Styles --- */
+.orbit-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Gives a 3D depth effect */
+}
+
+.main-photo {
+    width: 150px; /* Adjust size of owner photo */
+    z-index: 10;
+    position: relative;
+}
+
+.orbit-path {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 123, 255, 0.1); /* The visible "tail" or path */
+    animation: rotate-orbit linear infinite;
+}
+
+.dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent-color);
+    top: -6px; /* Positions dot on the path line */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Specific paths with different rotations and speeds */
+.path-1 { 
+    width: 250px; height: 250px; 
+    animation-duration: 6s; 
+    transform: rotateX(70deg) rotateY(10deg); 
+}
+.path-2 { 
+    width: 320px; height: 320px; 
+    animation-duration: 8s; 
+    transform: rotateX(60deg) rotateY(-20deg); 
+}
+.path-3 { 
+    width: 380px; height: 380px; 
+    animation-duration: 12s; 
+    transform: rotateX(80deg) rotateY(30deg); 
+}
+
+@keyframes rotate-orbit {
+    from { transform: rotateX(70deg) rotateY(10deg) rotateZ(0deg); }
+    to { transform: rotateX(70deg) rotateY(10deg) rotateZ(360deg); }
+}
+
+/* Correcting path-specific keyframes to maintain their tilt */
+.path-1 { animation-name: orbit-1; }
+.path-2 { animation-name: orbit-2; }
+.path-3 { animation-name: orbit-3; }
+
+@keyframes orbit-1 {
+    from { transform: rotateX(70deg) rotateY(10deg) rotateZ(0deg); }
+    to { transform: rotateX(70deg) rotateY(10deg) rotateZ(360deg); }
+}
+@keyframes orbit-2 {
+    from { transform: rotateX(60deg) rotateY(-20deg) rotateZ(0deg); }
+    to { transform: rotateX(60deg) rotateY(-20deg) rotateZ(360deg); }
+}
+@keyframes orbit-3 {
+    from { transform: rotateX(80deg) rotateY(30deg) rotateZ(0deg); }
+    to { transform: rotateX(80deg) rotateY(30deg) rotateZ(360deg); }
+}
+
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
     
