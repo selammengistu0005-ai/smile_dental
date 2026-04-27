@@ -216,74 +216,111 @@ body.dark-mode .jaw-image {
     border-radius: 50%;
 }
 
+/* --- Final Orbit Animation Styles --- */
+
 .orbit-path {
     position: absolute;
     border-radius: 50%;
-    /* The fading tail effect */
     border: 1px solid transparent; 
     background: conic-gradient(from 0deg, var(--accent-color), transparent 70%);
-    /* Mask creates the thin line - only 1px wide */
     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
     mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
+    
+    /* ADD THIS: Ensures JS can inject the animation correctly */
+    animation-fill-mode: forwards;
 }
 
 .dot {
     position: absolute;
-    /* BIGGER DOTS */
-    width: 22px; 
-    height: 22px;
+    width: 34px; /* Big dots */
+    height: 34px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    /* Enhanced Glow */
-    box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
-    /* Centers the large dot on the thin line */
-    top: -11px; 
+    box-shadow: 0 0 25px var(--accent-color), 0 0 50px var(--accent-color);
+    
+    /* Centering Math */
+    top: -17px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
 }
 
-/* Sizes and Tilts for the paths.
-   Note: Speeds are handled by the JS logic we discussed, 
-   but we define the physical paths here.
-*/
-.path-1 { 
-    width: 260px; 
-    height: 260px; 
+/* Animations are now handled dynamically by script.js to allow for coordination */
+.orbit-path {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
-.path-2 { 
-    width: 340px; 
-    height: 340px; 
+.path-1 { width: 260px; height: 260px; }
+.path-2 { width: 340px; height: 340px; }
+.path-3 { width: 420px; height: 420px; }
+
+/* --- Tooth Scrubbing Game Styles --- */
+
+.game-container {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* Positions it opposite to the tracker */
+    width: 220px;
+    padding: 15px;
+    background: var(--bg-color);
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 100;
+    transition: background-color var(--transition-speed);
 }
 
-.path-3 { 
-    width: 420px; 
-    height: 420px; 
+.tooth-stage {
+    position: relative; /* Allows bacteria to be positioned absolutely inside */
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
 }
 
-/* Keyframes: We keep these specific to ensure the dots maintain 
-   their unique 3D tilt while rotating.
-*/
-@keyframes orbit-1 {
-    from { transform: rotateX(75deg) rotateY(10deg) rotateZ(0deg); }
-    to { transform: rotateX(75deg) rotateY(10deg) rotateZ(360deg); }
+.game-tooth {
+    width: 90px;
+    height: auto;
+    z-index: 1; /* Sits behind the bacteria */
 }
 
-@keyframes orbit-2 {
-    from { transform: rotateX(65deg) rotateY(-25deg) rotateZ(0deg); }
-    to { transform: rotateX(65deg) rotateY(-25deg) rotateZ(360deg); }
+.bacteria {
+    position: absolute;
+    width: 35px;
+    height: auto;
+    cursor: cell; /* Changes cursor to a 'plus' or 'target' style */
+    z-index: 2;
+    transition: opacity 0.3s ease, transform 0.1s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-@keyframes orbit-3 {
-    from { transform: rotateX(85deg) rotateY(35deg) rotateZ(0deg); }
-    to { transform: rotateX(85deg) rotateY(35deg) rotateZ(360deg); }
+/* The Jumping Animation */
+@keyframes bacteria-jump {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.1); }
 }
 
-/* Assigning the unique animations with different speeds to ensure they exceed each other */
-.path-1 { animation: orbit-1 5s linear infinite; }
-.path-2 { animation: orbit-2 8s linear infinite; }
-.path-3 { animation: orbit-3 12s linear infinite; }
+.bacteria-animate {
+    animation: bacteria-jump 1.2s infinite ease-in-out;
+}
+
+/* Mobile Responsiveness for Game */
+@media (max-width: 768px) {
+    .game-container {
+        bottom: 180px; /* Lifted up so it doesn't overlap the mobile tracker */
+        left: 15px;
+        width: 160px;
+        padding: 10px;
+    }
+
+    .game-tooth {
+        width: 60px;
+    }
+}
 
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
