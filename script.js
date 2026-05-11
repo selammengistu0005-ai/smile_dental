@@ -13,19 +13,19 @@ if (savedTheme === 'dark') {
     darkIcon.style.display = 'block';
 }
 
-// 2. Add click event listener to the toggle
+// 2. Updated click event listener for the 75/25 split
 themeToggle.addEventListener('click', () => {
     // Toggle the 'dark-mode' class on the body
     body.classList.toggle('dark-mode');
 
     // Update icons and save preference
     if (body.classList.contains('dark-mode')) {
-        // Switch to Dark Mode visuals
+        // Switch to Dark Mode visuals (Full Black top)
         lightIcon.style.display = 'none';
         darkIcon.style.display = 'block';
         localStorage.setItem('theme', 'dark');
     } else {
-        // Switch to Light Mode visuals
+        // Switch to "Light" Mode visuals (Blue-Black top)
         lightIcon.style.display = 'block';
         darkIcon.style.display = 'none';
         localStorage.setItem('theme', 'light');
@@ -64,18 +64,28 @@ dayBoxes.forEach(box => {
 document.addEventListener('DOMContentLoaded', () => {
     const orbitPaths = document.querySelectorAll('.orbit-path');
     const speeds = [4, 8, 12]; 
+    
+    // 1. Define new, wider diameters for the orbits
+    // These should be larger than your photo (e.g., if photo is 350px, use 450px+)
+    const widerDiameters = [450, 550, 650]; 
+
     const orbitConfigs = [
-        { x: 0, y: 0, start: 0 },    // Path 1
-        { x: 0, y: 0, start: 120 },  // Path 2
-        { x: 0, y: 0, start: 240 }   // Path 3
-        ];
+        { x: 0, y: 0, start: 0 },    
+        { x: 0, y: 0, start: 120 },  
+        { x: 0, y: 0, start: 240 }   
+    ];
 
     const styleTag = document.createElement('style');
     document.head.appendChild(styleTag);
     const sheet = styleTag.sheet;
 
     orbitPaths.forEach((path, i) => {
-        if (!path) return; // Safety check
+        if (!path) return;
+        
+        // 2. Set the new width and height here
+        path.style.width = `${widerDiameters[i]}px`;
+        path.style.height = `${widerDiameters[i]}px`;
+
         const config = orbitConfigs[i];
         const keyframeName = `orbit-move-${i}`;
         
@@ -134,6 +144,45 @@ function startScrubGame() {
         bacteriaLayer.appendChild(bug);
     }
 }
+
+// --- Sliding Pill Navigation Logic ---
+const navItems = document.querySelectorAll('.nav-item');
+const pill = document.querySelector('.sliding-pill');
+
+/**
+ * Updates the pill's position and width based on the target element
+ */
+function movePill(element) {
+    if (!element || !pill) return;
+
+    // 1. Get dimensions of the clicked item
+    const itemWidth = element.offsetWidth;
+    const itemLeft = element.offsetLeft;
+
+    // 2. Apply dimensions to the sliding pill
+    pill.style.width = `${itemWidth}px`;
+    pill.style.left = `${itemLeft}px`;
+
+    // 3. Update active classes for styling
+    navItems.forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+}
+
+// Initialize the pill position on the "Home" item (active by default)
+const defaultActive = document.querySelector('.nav-item.active');
+if (defaultActive) {
+    // Small timeout ensures the browser has calculated widths correctly
+    setTimeout(() => movePill(defaultActive), 100);
+}
+
+// Add click listeners to all nav links
+navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        // Only prevent default if you are using smooth scrolling/single page
+        // e.preventDefault(); 
+        movePill(item);
+    });
+});
 
 function updateGameStatus() {
     const remaining = document.querySelectorAll('.bacteria').length;
