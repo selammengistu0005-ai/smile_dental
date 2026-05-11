@@ -6,15 +6,44 @@
     <title>Bright White Theme</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright White Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-    <header>
+    <div class="content-wrapper">
+<header>
+    <img src="https://res.cloudinary.com/dza5rdls6/image/upload/v1778526936/smile_dental_clinic_main_logo_gk59ah.png" 
+         class="site-logo" 
+         alt="Smile Dental Clinic Logo">
+
+         <nav class="nav-pill-container">
+        <div class="nav-links">
+            <div class="sliding-pill"></div> <a href="#" class="nav-item active" data-index="0">Home</a>
+            <a href="#" class="nav-item" data-index="1">About Us</a>
+            <a href="#" class="nav-item" data-index="2">Service</a>
+            <a href="#" class="nav-item" data-index="3">Our Team</a>
+            <a href="#" class="nav-item" data-index="4">Gallery</a>
+            <a href="#" class="nav-item" data-index="5">Testimonial</a>
+            <a href="#" class="nav-item" data-index="6">Contact</a>
+        </div>
+    </nav>
+
+    <img src="https://res.cloudinary.com/dza5rdls6/image/upload/v1778522041/tooth_model_rspfpw.png" 
+         class="jaw-image header-decoration" 
+         alt="Decorative Jaw">
+
     <div id="theme-toggle" class="toggle-container">
-        <img src="https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/dark_tooth-removebg-preview.png" 
+        <img src="https://res.cloudinary.com/dza5rdls6/image/upload/v1778517322/dark_tooth-removebg-preview_nbe9qv.png" 
              id="theme-icon-light" 
              alt="Switch to Dark Mode">
         
-        <img src="https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/light_tooth-removebg-preview.png" 
+        <img src="https://res.cloudinary.com/dza5rdls6/image/upload/v1778517519/light_tooth-removebg-preview_zico3r.png" 
              id="theme-icon-dark" 
              alt="Switch to Light Mode" 
              style="display: none;">
@@ -23,26 +52,35 @@
 
 <main>
     <section class="hero">
-        <div class="image-container">
-            <img src="https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/lower_jaw_tooth-removebg-preview%20(1).png" 
-                 alt="Lower Jaw Dental View" 
-                 class="jaw-image">
-        </div>
-        <h1>Smile Dental Care</h1>
-        <p>Your journey to a healthier, brighter smile starts here.</p>
-        <button class="cta-button">Book an Appointment</button>
+<div class="hero-text-content">
+    <h1>Smile Dental Care</h1>
+    <p>
+        Your journey to a <span class="highlight">healthier,</span>
+        <span class="highlight">brighter</span> smile <span class="zigzag-underline">starts here.</span>
+    </p>
+    <button class="cta-button">Book an Appointment</button>
+</div>
 
-        <div class="image-container orbit-wrapper" style="margin-top: 50px;">
-            <img src="https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/Owner_photo_1-removebg-preview.png" 
-                 alt="Owner Photo" 
-                 class="jaw-image main-photo">
+    <div class="image-container orbit-wrapper">
+    <img src="https://res.cloudinary.com/dza5rdls6/image/upload/v1778516934/Owner_smile_dental_photo_r7mlih.png" 
+         alt="Owner Photo" 
+         class="jaw-image main-photo">
 
-            <div class="orbit-path path-1"><div class="dot"></div></div>
-            <div class="orbit-path path-2"><div class="dot"></div></div>
-            <div class="orbit-path path-3"><div class="dot"></div></div>
-        </div>
-        
-    </section>
+    <div class="orbit-path path-1">
+        <div class="dot"></div>
+    </div>
+    
+    <div class="orbit-path path-2">
+        <div class="dot"></div>
+    </div>
+    
+    <div class="orbit-path path-3">
+        <div class="dot"></div>
+    </div>
+</div>
+</section>
+</main>
+    </div>
 
     <div class="tracker-container"> 
         <h3>በሳምንት ለምን ያህል ጊዜ ጥርሶን 🦷 ይቦርሻሉ 🪥......❓</h3>
@@ -63,7 +101,7 @@
     <div class="game-container">
         <h3>Clean the Tooth! 🪥</h3>
         <div class="tooth-stage">
-            <img src="https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/Tooth_to_clean-removebg-preview.png" 
+            <img src="[https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/Tooth_to_clean-removebg-preview.png](https://raw.githubusercontent.com/selammengistu0005-ai/smile_dental/main/Tooth_to_clean-removebg-preview.png)" 
                  class="game-tooth" 
                  alt="Tooth to clean">
             
@@ -75,8 +113,6 @@
         </div>
     </div>
     
-</main>
-
     <script src="script.js"></script>
 </body>
 </html>
