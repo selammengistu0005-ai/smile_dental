@@ -1,21 +1,24 @@
-/* 1. Theme Variables */
+/* 1. Updated Theme Variables with Blue/White Split */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #1a1a1a;
-    --accent-color: #007bff;
-    --hero-text: #444444;
+    --top-bg: #005cfa;      /* A vibrant Blue for the top section */
+    --bottom-bg: #000000;   /* The White base for the bottom section */
+    --text-color: #ffffff;  /* White text for better contrast on the blue */
+    --accent-color: #ffd700; /* Gold accent to pop against the blue */
+    --hero-text: #e0e0e0;
     --transition-speed: 0.3s;
+    --card-bg: rgba(255, 255, 255, 0.15); 
 }
 
-/* These values apply when the 'dark-mode' class is added to the body */
 body.dark-mode {
-    --bg-color: #121212;
+    --top-bg: #000000;      /* A deeper Navy Blue for dark mode */
+    --bottom-bg: #005cfa;   /* A dark grey/black for the bottom */
     --text-color: #f5f5f5;
     --accent-color: #3498db;
     --hero-text: #cccccc;
+    --card-bg: rgba(255, 255, 255, 0.05);
 }
 
-/* 2. General Styles */
+/* 2. Updated Styles for Rounded Divider */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,21 +26,54 @@ body.dark-mode {
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bottom-bg); /* The bottom color is now the base */
     color: var(--text-color);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     transition: background-color var(--transition-speed), color var(--transition-speed);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* This creates the blue top section with rounded bottom corners */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%; /* Maintains your 75% height requirement */
+    background-color: var(--top-bg);
+    border-bottom-left-radius: 50px;  /* Adjust these pixels for more/less roundness */
+    border-bottom-right-radius: 50px;
+    z-index: -1; /* Ensures it stays behind your content */
+    transition: background-color var(--transition-speed);
+}
+
+.content-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
 /* 3. Toggle Position */
 header {
     width: 100%;
-    padding: 20px;
+    padding: 20px 40px; /* Increased padding for better corner spacing */
     display: flex;
-    justify-content: flex-end; /* Pushes toggle to the right corner */
+    justify-content: space-between; /* Pushes logo to the left and toggle to the right */
+    align-items: center;
+    position: absolute; /* Ensures it overlays the top background section */
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.site-logo {
+    width: 180px; /* Adjust this size as needed */
+    height: auto;
+    object-fit: contain;
 }
 
 .toggle-container {
@@ -65,21 +101,54 @@ header {
 main {
     flex: 1;
     display: flex;
-    justify-content: center;
+    /* This pushes the text to the left and the image to the right */
+    justify-content: space-between; 
     align-items: center;
-    text-align: center;
+    /* Aligns the text lines themselves to the left */
+    text-align: left; 
+    /* Adds padding so content doesn't touch the very edges of the screen */
+    padding: 0 10%; 
+}
+
+.hero {
+    display: flex;             /* Turns the section into a row */
+    justify-content: space-between; /* Pushes text left, orbits right */
+    align-items: center;       /* Centers them vertically against each other */
+    width: 100%;
+    max-width: 1200px;         /* Keeps content from hitting screen edges */
+    margin: 0 auto;            /* Centers the whole container */
+    padding: 0 5%;             /* Adds side breathing room */
+}
+
+/* Add this to wrap your text so it stays grouped */
+.hero-text-content {
+    text-align: left;
+    flex: 1;
+    max-width: 500px;
+    /* This shifts the entire block left without affecting other elements */
+    transform: translate(-650px, -200px); 
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 4.5rem;   /* Our new larger size */
     margin-bottom: 1rem;
     font-weight: 800;
+    line-height: 1.1;
+    white-space: nowrap; /* This prevents the text from wrapping to a second line */
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 2.8rem;
     color: var(--hero-text);
     margin-bottom: 2rem;
+    line-height: 1.4;
+    font-weight: bold; /* This makes the entire text bold */
+}
+
+/* Add this new class for the blue words */
+.highlight {
+    color: #003cff; /* Deep blue color */
+    font-weight: 900; /* Makes it extra bold to stand out */
 }
 
 .cta-button {
@@ -108,36 +177,6 @@ main {
 .toggle-container img:hover {
     filter: drop-shadow(0 0 8px var(--accent-color));
 }
-/* Styling for the central jaw image */
-.image-container {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.jaw-image {
-    max-width: 100%;
-    height: auto;
-    width: 400px; /* Adjust this value to make the image larger or smaller */
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-    transition: transform 0.3s ease;
-}
-
-/* Subtle hover effect */
-.jaw-image:hover {
-    transform: scale(1.02);
-}
-
-/* Ensure the image remains visible in dark mode */
-body.dark-mode .jaw-image {
-    filter: drop-shadow(0 10px 20px rgba(255,255,255,0.05));
-}
-
-.image-container {
-    position: relative; /* Necessary for absolute dots */
-    display: inline-block;
-}
-
 /* 5. Tracker Styles - Moved to the Far Right */
 .tracker-container {
     position: fixed;
@@ -198,22 +237,32 @@ body.dark-mode .jaw-image {
 /* --- Orbit Animation Styles --- */
 /* --- Final Orbit Animation Styles --- */
 
-.orbit-wrapper {
+
+.image-container.orbit-wrapper {
     position: relative;
-    width: 450px; /* Increased to accommodate larger orbits */
-    height: 450px;
-    margin: 50px auto;
+    width: 500px;
+    height: 500px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    perspective: 1200px; /* Enhanced 3D depth */
+    align-items: center; /* Centers the static photo */
+    margin: -550px auto 50px auto; 
+    perspective: 1200px;
+    overflow: visible; /* Allows the dot's glow to spread outside the box */
 }
 
 .main-photo {
-    width: 180px; /* Slightly larger image to match wrapper */
-    z-index: 10;
-    position: relative;
+    width: 350px; /* Increased from 260px to expand the image */
+    height: 350px; /* Increased from 260px */
+    position: absolute;
+    z-index: 5;
     border-radius: 50%;
+    object-fit: cover;
+    transform: none;
+    animation: none;
+    
+    /* Adjusted radial mask for the larger size */
+    mask-image: radial-gradient(circle, black 75%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, black 75%, transparent 100%);
 }
 
 /* --- Final Orbit Animation Styles --- */
@@ -221,39 +270,39 @@ body.dark-mode .jaw-image {
 .orbit-path {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid transparent; 
-    background: conic-gradient(from 0deg, var(--accent-color), transparent 70%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
-    
-    /* ADD THIS: Ensures JS can inject the animation correctly */
+    z-index: 10; /* Higher than the photo (5) so light passes OVER it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* So the rings don't block mouse clicks on the photo */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     animation-fill-mode: forwards;
 }
 
-.dot {
+/* This creates the ring without masking your photo */
+.orbit-path::before {
+    content: "";
     position: absolute;
-    width: 34px; /* Big dots */
-    height: 34px;
-    background-color: var(--accent-color);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 50%;
-    box-shadow: 0 0 25px var(--accent-color), 0 0 50px var(--accent-color);
-    
-    /* Centering Math */
-    top: -17px; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
+    background: conic-gradient(from 0deg, var(--accent-color), transparent 70%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff calc(100% - 1px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff calc(100% - 1px));
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* Animations are now handled dynamically by script.js to allow for coordination */
-.orbit-path {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.path-1 { 
+    width: 340px; 
+    height: 340px; 
+    display: flex;         /* Added to center the photo */
+    justify-content: center; 
+    align-items: center;
 }
-
-.path-1 { width: 260px; height: 260px; }
-.path-2 { width: 340px; height: 340px; }
-.path-3 { width: 420px; height: 420px; }
 
 /* --- Tooth Scrubbing Game Styles --- */
 
@@ -306,6 +355,92 @@ body.dark-mode .jaw-image {
 
 .bacteria-animate {
     animation: bacteria-jump 1.2s infinite ease-in-out;
+}
+
+.jaw-image.header-decoration {
+    position: absolute;
+    top: 15px;
+    right: 220px;
+    width: 410px;
+    z-index: 10;
+    pointer-events: none;
+
+    /* Ghost-like effects */
+    opacity: 0.3;                /* Makes it semi-transparent (1.0 is solid, 0.0 is invisible) */
+    filter: blur(1px) grayscale(100%); /* Softens the focus and removes color for a spooky feel */
+    mix-blend-mode: overlay;     /* Blends the image into the blue background behind it */
+}
+
+.zigzag-underline {
+    position: relative;
+    display: inline-block; /* Required for the underline to align correctly */
+}
+
+.zigzag-underline::after {
+    content: "";
+    position: absolute;
+    left: -5%;
+    right: -10%;  /* Extended slightly more for a longer "tail" */
+    bottom: -15px; /* Pushed down a bit further to accommodate the thicker stroke */
+    height: 25px;  /* Increased height for a more dramatic zigzag */
+    
+    /* Increased stroke-width to 5 and adjusted the path for a heavier feel */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 20"><path d="M5 10 L130 8 L160 16 L140 18 L185 6 L295 10" stroke="%23007bff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+    
+    /* Added a slight blur and opacity to make it look like real ink soaking into paper */
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2));
+    opacity: 0.9;
+}
+
+.nav-pill-container {
+    background: rgba(255, 255, 255, 0.05); /* Subtle glass effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px; /* Makes it a tube */
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 4px; /* Space between the text items */
+}
+
+.sliding-pill {
+    position: absolute;
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 30px; /* Pill shape */
+    z-index: 1; /* Sits behind the text */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth sliding effect */
+    pointer-events: none; /* Let clicks pass through to the links */
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    position: relative;
+    z-index: 2; /* Sits on top of the pill */
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* When the pill is behind the text, we might want the text color to change */
+.nav-item.active {
+    color: #fff; /* White text when active (adjust based on your accent color) */
 }
 
 /* Mobile Responsiveness for Game */
