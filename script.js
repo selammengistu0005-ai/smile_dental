@@ -63,7 +63,7 @@ dayBoxes.forEach(box => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const orbitPaths = document.querySelectorAll('.orbit-path');
-    const speeds = [4, 8, 12]; 
+    const speeds = [18, 28, 40]; 
     
     // 1. Define new, wider diameters for the orbits
     // These should be larger than your photo (e.g., if photo is 350px, use 450px+)
