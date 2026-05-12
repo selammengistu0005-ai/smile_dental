@@ -134,7 +134,7 @@ main {
     flex: 1;
     max-width: 500px;
     /* This shifts the entire block left without affecting other elements */
-    transform: translate(-650px, -200px); 
+    transform: translate(-750px, -220px); 
 }
 
 .hero h1 {
@@ -160,41 +160,115 @@ main {
 }
 
 .cta-button {
-    padding: 15px 35px;
-    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+
+    padding: 16px 38px;
+
+    font-size: 1.05rem;
     font-weight: 700;
-    color: #ffffff;
+    letter-spacing: 0.4px;
+
+    color: #e0f2fe;
+
     cursor: pointer;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    
-    /* 1. Glassmorphic Base & Blur */
-    /* Using a subtle white-to-transparent gradient for the "elevation" light effect */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    
-    /* 2. Elevation & Border */
-    /* A thin white border defines the glass edge, and a soft shadow provides height */
-    border: 1px solid rgb(128, 177, 250);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    
-    /* 3. Text Shadow for Readability */
-    text-shadow: 0 2px 4px rgb(0, 48, 240);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease,
+        border 0.35s ease;
+
+    /* LIQUID GLASS BASE */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.05)
+        );
+
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    /* LIQUID BORDER */
+    border: 1px solid rgba(255,255,255,0.18);
+
+    /* DEPTH + GLOW */
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.25),
+        inset 0 -1px 1px rgba(255,255,255,0.05),
+        0 10px 30px rgba(0, 140, 255, 0.18),
+        0 0 20px rgba(56,189,248,0.08);
+
+    /* CLEAN TEXT */
+    text-shadow:
+        0 1px 4px rgba(0, 119, 255, 0.35);
 }
 
+/* LIQUID LIGHT SWEEP */
+.cta-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -140%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            transparent
+        );
+
+    transform: skewX(-25deg);
+
+    transition: 0.9s ease;
+}
+
+/* HOVER */
 .cta-button:hover {
-    /* Increases the gradient brightness and shifts the button up on hover */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.1));
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px 0 rgb(0, 64, 255);
-    border: 1px solid rgb(0, 76, 255);
+
+    transform:
+        translateY(-4px)
+        scale(1.015);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.24),
+            rgba(255,255,255,0.08)
+        );
+
+    border: 1px solid rgba(125,211,252,0.4);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.28),
+        inset 0 -1px 1px rgba(255,255,255,0.06),
+        0 14px 40px rgba(0, 140, 255, 0.28),
+        0 0 35px rgba(56,189,248,0.18);
 }
 
+.cta-button:hover::before {
+    left: 180%;
+}
+
+/* CLICK */
 .cta-button:active {
-    /* "Presses" the button down slightly */
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+
+    transform:
+        translateY(-1px)
+        scale(0.995);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.2),
+        0 6px 18px rgba(0,0,0,0.25);
 }
 
 .toggle-container img {
@@ -270,68 +344,188 @@ main {
 
 .image-container.orbit-wrapper {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
+
     display: flex;
     justify-content: center;
-    align-items: center; /* Centers the static photo */
-    margin: -550px auto 50px auto; 
-    perspective: 1200px;
-    overflow: visible; /* Allows the dot's glow to spread outside the box */
+    align-items: center;
+
+    margin: auto;
+
+    perspective: 1600px;
+    overflow: visible;
 }
 
-.main-photo {
-    width: 350px; /* Increased from 260px to expand the image */
-    height: 350px; /* Increased from 260px */
+/* SOFT BACKGROUND GLOW */
+.image-container.orbit-wrapper::before {
+    content: "";
+
     position: absolute;
-    z-index: 5;
+
+    width: 420px;
+    height: 420px;
+
     border-radius: 50%;
-    object-fit: cover;
-    transform: none;
-    animation: none;
-    
-    /* Adjusted radial mask for the larger size */
-    mask-image: radial-gradient(circle, black 75%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle, black 75%, transparent 100%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 153, 255, 0.25),
+            rgba(0, 153, 255, 0.08),
+            transparent 70%
+        );
+
+    filter: blur(40px);
+
+    z-index: 0;
+
+    animation: auraPulse 5s ease-in-out infinite;
 }
 
-/* --- Final Orbit Animation Styles --- */
+@keyframes auraPulse {
+
+    0%,100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+}
+
+/* MAIN PHOTO */
+
+.owner-portrait {
+
+    width: 420px;
+    height: 520px;
+
+    position: absolute;
+
+    z-index: 5;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    display: block;
+
+    pointer-events: auto;
+
+    /* IMPORTANT */
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+
+    /* REAL PNG GLOW */
+    filter:
+        drop-shadow(0 0 40px rgba(0,170,255,0.22))
+        drop-shadow(0 0 80px rgba(0,170,255,0.12));
+}
+
+@keyframes floatPhoto {
+
+    0%,100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ORBIT WRAPPER */
 
 .orbit-path {
+
     position: absolute;
+
     border-radius: 50%;
-    z-index: 10; /* Higher than the photo (5) so light passes OVER it */
+
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none; /* So the rings don't block mouse clicks on the photo */
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-}
 
-/* This creates the ring without masking your photo */
-.orbit-path::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--accent-color), transparent 70%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff calc(100% - 1px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff calc(100% - 1px));
+    transform-style: preserve-3d;
+
     pointer-events: none;
-    z-index: 1;
+
+    /* BELOW IMAGE */
+    z-index: 4;
 }
 
-.path-1 { 
-    width: 340px; 
-    height: 340px; 
-    display: flex;         /* Added to center the photo */
-    justify-content: center; 
-    align-items: center;
+/* GLOWING ORBIT RING */
+
+.orbit-path::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            rgba(0,255,255,0),
+            rgba(0,170,255,0.9),
+            rgba(0,255,255,0)
+        );
+
+    -webkit-mask:
+        radial-gradient(
+            farthest-side,
+            transparent calc(100% - 3px),
+            white calc(100% - 1px)
+        );
+
+    mask:
+        radial-gradient(
+            farthest-side,
+            transparent calc(100% - 3px),
+            white calc(100% - 1px)
+        );
+
+    filter:
+        drop-shadow(0 0 8px rgba(0,170,255,0.8))
+        drop-shadow(0 0 18px rgba(0,170,255,0.45));
+
+    opacity: 0.95;
+}
+
+/* SINGLE GLOWING BLUE DOT */
+
+.dot {
+
+    position: absolute;
+
+    top: -7px;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #7dd3fc;
+
+    box-shadow:
+        0 0 10px #7dd3fc,
+        0 0 25px #38bdf8,
+        0 0 50px rgba(56,189,248,0.9);
+
+    z-index: 50;
+}
+
+/* ORBIT SIZE */
+
+.path-1 {
+
+    width: 1050px;
+    height: 1050px;
 }
 
 /* --- Tooth Scrubbing Game Styles --- */
@@ -577,29 +771,85 @@ main {
 
 .top-slogan-pill {
     display: inline-block;
-    padding: 6px 24px;
+    padding: 10px 26px;
     margin-bottom: 20px;
-    
-    /* 1. The "Constant White Pill" */
-    background-color: #ffffff28; 
-    border-radius: 50px; 
-    
-    /* 2. The "Deep Blue Borders" */
-    /* Adjust the '2px' to '3px' if you want a thicker, bolder outline */
-    border: 2px solid #003cff; 
-    
-    /* 3. Text Styling: Deep Blue + Bold */
-    color: #003cff;
-    font-weight: 800;
+
+    position: relative;
+    overflow: hidden;
+
+    /* LIQUID GLASS BACKGROUND */
+    background: rgba(255, 255, 255, 0.08);
+
+    /* LIQUID GLASS BLUR */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+    border-radius: 999px;
+
+    /* SOFT LIQUID BORDER */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    /* TEXT */
+    color: #7dd3fc;
+    font-weight: 700;
     font-size: 0.85rem;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
-    
-    /* Subtle shadow to make it pop off the blue background */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    
-    /* Alignment within the hero-text-content */
+
+    /* DEPTH */
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.25),
+        inset 0 -1px 1px rgba(255,255,255,0.05),
+        0 8px 32px rgba(0, 140, 255, 0.18),
+        0 0 20px rgba(0, 140, 255, 0.08);
+
     align-self: flex-start;
+
+    /* SMOOTHNESS */
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+/* LIQUID SHINE */
+.top-slogan-pill::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            transparent
+        );
+
+    transform: skewX(-25deg);
+
+    transition: 0.8s ease;
+}
+
+/* HOVER EFFECT */
+.top-slogan-pill:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.3),
+        inset 0 -1px 1px rgba(255,255,255,0.08),
+        0 12px 40px rgba(0, 140, 255, 0.28),
+        0 0 30px rgba(56,189,248,0.15);
+}
+
+.top-slogan-pill:hover::before {
+    left: 160%;
 }
 
 /* Updated Service Frame to a 50x50 Square */
@@ -647,13 +897,18 @@ main {
 }
 
 .stats-container {
-    display: flex;
-    gap: 20px;          /* Space between the two frames */
-    justify-content: center; /* Centers them in the hero section */
+    display: flex;          /* 1. This is the key for horizontal alignment */
+    flex-direction: row;    /* 2. Forces items to stay in a line */
+    gap: 20px;              /* 3. Space between the 15+ and 10k frames */
+    
+    justify-content: flex-start; /* 4. Aligns the group to the left */
     align-items: center;
-    margin-left: -250px;
-    margin-top: 250px;
-    flex-wrap: wrap;    /* Allows them to stack on very small mobile screens */
+    flex-wrap: nowrap;      /* 5. Prevents them from stacking vertically */
+
+    /* Positioning */
+    margin-top: 450px;       /* Gap below the 'Book Appointment' button */
+    margin-left: -1250px;         /* Reset old negative margins */
+    padding-left: 200;
 }
 
 /* 3. Scaled Text to fit the 150px box */
