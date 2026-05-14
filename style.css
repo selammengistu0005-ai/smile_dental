@@ -7,6 +7,18 @@
     --hero-text: #e0e0e0;
     --transition-speed: 0.3s;
     --card-bg: rgba(255, 255, 255, 0.15); 
+    --frame-bg: rgba(0, 60, 255, 0.06);
+    --frame-border: rgba(0, 60, 255, 0.25);
+    --frame-text: #0a1a6e;
+    --slogan-bg: rgba(200, 210, 220, 0.35);
+    --slogan-text: #003cff;
+    --btn-bg: #003cff;                        /* ← added */
+    --btn-text: #ffffff;   
+     --hero-h1-text: #1a1a2e;   /* dark navy, visible on white background */
+     --hero-p-text: #2d2d2d;    /* dark grey, visible on white background */
+     --nav-bg: rgba(0, 0, 0, 0.75);
+     --nav-border: rgba(0, 0, 0, 0.4);
+     --nav-shadow-inner: rgba(0, 0, 0, 0.6);
 }
 
 body.dark-mode {
@@ -16,6 +28,18 @@ body.dark-mode {
     --accent-color: #3498db;
     --hero-text: #cccccc;
     --card-bg: rgba(255, 255, 255, 0.05);
+    --frame-bg: rgba(255, 255, 255, 0.08);
+    --frame-border: rgba(255, 255, 255, 0.18);
+    --frame-text: #ffffff;
+    --slogan-bg: rgba(255, 255, 255, 0.08);
+    --slogan-text: #7dd3fc;
+    --btn-bg: rgba(255, 255, 255, 0.08);      /* ← added */
+    --btn-text: #e0f2fe;      
+    --hero-h1-text: #ffffff;   /* white, visible on black background */
+    --hero-p-text: #e0e0e0;    /* light grey, visible on black background */
+    --nav-bg: rgba(255, 255, 255, 0.05);
+    --nav-border: rgba(255, 255, 255, 0.08);
+    --nav-shadow-inner: rgba(255, 255, 255, 0.08);
 }
 
 /* 2. Updated Styles for Rounded Divider */
@@ -42,7 +66,7 @@ body::before {
     top: 0;
     left: 0;
     width: 100%;
-    height: 75%; 
+    height: 57%; 
     background-color: var(--top-bg); /* Ensure this is NOT white to see the effect */
     border-bottom-left-radius: 50px;  
     border-bottom-right-radius: 50px;
@@ -143,11 +167,12 @@ main {
     font-weight: 800;
     line-height: 1.1;
     white-space: nowrap; /* This prevents the text from wrapping to a second line */
+    color: var(--hero-h1-text);
 }
 
 .hero p {
     font-size: 2.8rem;
-    color: var(--hero-text);
+    color: var(--hero-p-text);
     margin-bottom: 2rem;
     line-height: 1.4;
     font-weight: bold; /* This makes the entire text bold */
@@ -169,7 +194,7 @@ main {
     font-weight: 700;
     letter-spacing: 0.4px;
 
-    color: #e0f2fe;
+    color: var(--btn-text);                   /* ← changed */
 
     cursor: pointer;
 
@@ -182,12 +207,7 @@ main {
         border 0.35s ease;
 
     /* LIQUID GLASS BASE */
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,0.18),
-            rgba(255,255,255,0.05)
-        );
+    background: var(--btn-bg);                /* ← changed */
 
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -242,8 +262,8 @@ main {
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,0.24),
-            rgba(255,255,255,0.08)
+            rgba(0, 60, 255, 0.85),
+            rgba(0, 100, 255, 0.95)
         );
 
     border: 1px solid rgba(125,211,252,0.4);
@@ -621,11 +641,11 @@ main {
 }
 
 .nav-pill-container {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--nav-bg);                         /* ← changed */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--nav-border);               /* ← changed */
 
     border-radius: 50px;
     padding: 6px;
@@ -637,9 +657,8 @@ main {
 
     overflow: hidden;
 
-    /* softer futuristic depth */
     box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.08),
+        inset 0 1px 1px var(--nav-shadow-inner),       /* ← changed */
         inset 0 -1px 1px rgba(0,0,0,0.4),
         0 0 20px rgba(0, 170, 255, 0.08),
         0 10px 30px rgba(0,0,0,0.35);
@@ -778,7 +797,7 @@ main {
     overflow: hidden;
 
     /* LIQUID GLASS BACKGROUND */
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--slogan-bg);             /* ← changed */
 
     /* LIQUID GLASS BLUR */
     backdrop-filter: blur(18px) saturate(180%);
@@ -790,7 +809,7 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.18);
 
     /* TEXT */
-    color: #7dd3fc;
+    color: var(--slogan-text);                /* ← changed */
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 1.6px;
@@ -855,13 +874,11 @@ main {
 /* Updated Service Frame to a 50x50 Square */
 /* 1. Large Liquid Glass Service Frame (350x350) */
 .service-frame {
-    /* 1. Reduced size from 250px to 150px */
     width: 150px;
     height: 150px;
-    padding: 15px; /* Reduced padding to give text more room */
+    padding: 15px;
     margin-top: 20px;
     
-    /* 2. Centering Logic (Kept from your version) */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -871,19 +888,13 @@ main {
     overflow: hidden;
 
     /* Liquid Glass Background & Blur */
-    background: radial-gradient(
-        circle at top left,
-        rgba(255, 255, 255, 0.18) 0%,
-        rgba(255, 255, 255, 0.08) 35%,
-        rgba(255, 255, 255, 0.03) 70%,
-        rgba(255, 255, 255, 0.10) 100%
-    );
+    background: var(--frame-bg);                     /* ← changed */
     backdrop-filter: blur(22px) saturate(180%);
     -webkit-backdrop-filter: blur(22px) saturate(180%);
 
     /* Liquid Glass Border & Glow */
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 20px; /* Slightly smaller radius for a smaller box */
+    border: 1px solid var(--frame-border);           /* ← changed */
+    border-radius: 20px;
     
     box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.04),
@@ -914,43 +925,266 @@ main {
 /* 3. Scaled Text to fit the 150px box */
 
 .service-frame .frame-label {
-    font-size: 1.8rem !important;  /* Large enough to pop, but fits */
+    font-size: 1.8rem !important;
     line-height: 1;
     margin-bottom: 2px;
     display: block;
     opacity: 0.9;
-    color: white;
+    color: var(--frame-text);                        /* ← changed */
     font-weight: 800;
 }
 
 .service-frame .frame-title {
-    font-size: 0.75rem !important; /* Smaller size so "years of experiance" doesn't break */
+    font-size: 0.75rem !important;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
     font-weight: 600;
-    color: white;
+    color: var(--frame-text);                        /* ← changed */
     margin: 0;
 }
 
 .frame-content {
     width: 100%;
-    /* Removed extra padding to prevent squishing */
 }
 
-/* Mobile Responsiveness for Game */
-@media (max-width: 768px) {
-    .game-container {
-        bottom: 180px; /* Lifted up so it doesn't overlap the mobile tracker */
-        left: 15px;
-        width: 160px;
-        padding: 10px;
-    }
 
-    .game-tooth {
-        width: 60px;
-    }
+.opening-hours-frame {
+    position: relative;
+    width: 220px;
+    height: 100px;
+    top: -300px;
+    left: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 22px;
+
+    background: rgba(0, 140, 255, 0.08) !important;
+
+    border: 1px solid rgba(0, 140, 255, 0.45);
+
+    border-radius: 22px;
+
+    overflow: visible;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 0 1px rgba(0, 140, 255, 0.08),
+        inset 0 0 18px rgba(0, 140, 255, 0.12),
+        inset 0 -10px 25px rgba(0, 140, 255, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(0, 140, 255, 0.22),
+        0 0 45px rgba(0, 140, 255, 0.12);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
 }
+
+/* =========================
+   GLOW HOVER EFFECT
+   ========================= */
+
+.opening-hours-frame:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(0, 170, 255, 0.9);
+
+    box-shadow:
+        0 0 0 1px rgba(0, 140, 255, 0.2),
+        inset 0 0 22px rgba(0, 140, 255, 0.15),
+        inset 0 -12px 28px rgba(0, 140, 255, 0.14),
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(0, 140, 255, 0.35),
+        0 0 70px rgba(0, 140, 255, 0.18);
+}
+
+/* =========================================
+   WAVE BORDER
+   ========================================= */
+
+.opening-hours-frame::before {
+    content: '';
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: -1px;
+
+    height: 18px;
+
+    border-bottom: 2px solid rgba(0, 170, 255, 0.95);
+
+    border-radius: 0 0 30px 30px;
+
+    filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.9));
+
+    clip-path: path(
+        "M0,8 
+         C25,8 35,16 55,16
+         C75,16 85,8 110,8
+         C135,8 145,16 165,16
+         C185,16 195,8 220,8"
+    );
+
+    opacity: 0.95;
+}
+
+
+.opening-hours-frame::after {
+    content: '';
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    background: #00aaff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px rgba(0, 170, 255, 1),
+        0 0 25px rgba(0, 170, 255, 0.7),
+        0 0 45px rgba(0, 170, 255, 0.4);
+
+    top: -6px;
+    left: 50%;
+
+    transform-origin: 0 58px;
+
+    animation: orbitFrame 4s linear infinite;
+}
+
+.frame-content {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* LABEL */
+
+.opening-hours-frame .frame-label {
+    font-size: 1.3rem !important;
+    font-weight: 800;
+    color: var(--frame-text);
+    margin-bottom: 10px;
+    display: block;
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 8px rgba(0, 170, 255, 0.3);
+}
+
+/* TITLE */
+
+.opening-hours-frame .frame-title {
+    font-size: 0.78rem !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: 0.3px;
+    color: var(--frame-text);
+    margin-bottom: 6px;
+
+    opacity: 0.9;
+}
+
+/* TIME */
+
+.opening-hours-frame .frame-time {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--frame-text);
+    margin: 0;
+    opacity: 0.75;
+}
+
+.services-section {
+    width: 100%;
+    padding: -100px 5%;
+    text-align: center;
+}
+
+.services-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--hero-h1-text);
+    margin-bottom: 40px;
+    display: inline-block;
+    border-bottom: 3px solid #003cff;
+    padding-bottom: 6px;
+}
+
+.services-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.services-card {
+    width: 260px;
+    height: 280px;
+}
+
+.services-card .frame-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.services-card-icon {
+    width: 170px;
+    height: 170px;
+    object-fit: contain;
+}
+
+.services-card-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--frame-text);
+    margin: 0;
+    text-align: center;
+}
+
+.services-card-desc {
+    font-size: 1rem;
+    color: var(--frame-text);
+    opacity: 0.8;
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.services-learn-btn {
+    background: #003cff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 60, 255, 0.35);
+}
+
+.services-learn-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 60, 255, 0.5);
+}
+
 
 /* 6. Media Queries for Tablets and Phones */
 @media (max-width: 768px) {
