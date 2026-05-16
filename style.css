@@ -1398,12 +1398,81 @@ body.dark-mode .banner-section {
     text-align: left;
     line-height: 1.2;
     position: absolute;
-    top: 190px;
-    left: calc(10% - 0px);
+    top: 250px;
+    left: 10px;
 }
 
 .about-title span {
     color: #003cff;
+}
+
+/* ================================
+   ABOUT TEAM FRAME
+   ================================ */
+
+/* ================================
+   ABOUT TEAM FRAME
+   ================================ */
+
+.about-team-frame {
+    position: absolute;
+    top: 530px;
+    left: 10%;
+    width: 1000px;
+    display: flex;
+    align-items: stretch;
+    height: 200px;
+    overflow: hidden;
+
+    background: var(--frame-bg);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid var(--frame-border);
+    border-radius: 20px;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 1px 1px rgba(255, 255, 255, 0.20),
+        inset 0 -10px 20px rgba(0, 120, 255, 0.08),
+        inset 0 0 25px rgba(255, 255, 255, 0.05),
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(0, 140, 255, 0.12);
+}
+
+.about-team-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    gap: 4px;
+}
+
+.about-team-divider {
+    width: 1px;
+    background: var(--frame-border);
+    align-self: stretch;
+}
+
+.team-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.team-desc {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--frame-text);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.team-desc-highlight {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #003cff;
+    display: block;
 }
 
 /* 6. Media Queries for Tablets and Phones */
