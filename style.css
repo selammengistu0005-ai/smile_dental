@@ -303,28 +303,35 @@ main {
 }
 /* 5. Tracker Styles - Moved to the Far Right */
 .tracker-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;      /* Pins it to the far right */
-    width: 380px;     /* Keeps width consistent */
+    position: relative;
+    width: 380px;
     padding: 20px;
-    background: var(--bg-color);
-    border: 1px solid rgba(0, 123, 255, 0.2);
+    background: #003cff;
+    border: 2px solid #000000;
     border-radius: 12px;
     text-align: left;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    z-index: 100;
+    margin: 40px auto;
+    left: 1050px;
+    top: -1400px;
+    z-index: 200;
+}
+
+body.dark-mode .tracker-container {
+    background: #003cff;
+    border: 2px solid #ffffff;
 }
 
 .tracker-container h3 {
     font-size: 0.9rem;
     margin-bottom: 12px;
+    color: #ffffff;
 }
 
 .days-wrapper {
     display: flex;
     flex-direction: row; 
-    flex-wrap: nowrap;   /* Forces horizontal stacking */
+    flex-wrap: nowrap;
     gap: 6px;            
     margin-bottom: 15px;
 }
@@ -332,7 +339,7 @@ main {
 .day-box {
     flex: 1;
     padding: 10px 5px;
-    border: 2px solid #ddd;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.75rem;
@@ -340,20 +347,22 @@ main {
     text-align: center;
     transition: all 0.3s ease;
     user-select: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .day-box.selected {
-    border-color: var(--accent-color);
-    background-color: rgba(0, 123, 255, 0.1);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-    color: var(--accent-color);
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #ffffff;
 }
 
 .info-box {
     font-size: 0.85rem;
     line-height: 1.4;
-    color: var(--text-color);
-    border-left: 4px solid var(--accent-color);
+    color: #ffffff;
+    border-left: 4px solid #ffffff;
     padding-left: 10px;
     min-height: 45px;
 }
@@ -1370,6 +1379,31 @@ body.dark-mode .banner-btn {
 
 body.dark-mode .banner-section {
     box-shadow: 0 10px 40px rgba(255, 255, 255, 0.08);
+}
+
+/* ================================
+   ABOUT SECTION
+   ================================ */
+
+.about-section {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.about-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--hero-h1-text);
+    text-align: left;
+    line-height: 1.2;
+    position: absolute;
+    top: 190px;
+    left: calc(10% - 0px);
+}
+
+.about-title span {
+    color: #003cff;
 }
 
 /* 6. Media Queries for Tablets and Phones */
