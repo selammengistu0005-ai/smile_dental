@@ -197,3 +197,30 @@ function updateGameStatus() {
 
 // Initialize the game
 startScrubGame();
+
+// --- About Section Toggle Logic ---
+const aboutNav = document.querySelector('.nav-item[data-index="1"]');
+const homeNav = document.querySelector('.nav-item[data-index="0"]');
+const aboutSection = document.getElementById('about-section');
+
+const sectionsToHide = [
+    document.querySelector('.hero'),
+    document.querySelector('.services-section'),
+    document.querySelector('.banner-section'),
+    document.querySelector('.tracker-container'),
+    document.querySelector('.game-container'),
+];
+
+aboutNav.addEventListener('click', (e) => {
+    e.preventDefault();
+    sectionsToHide.forEach(el => { if (el) el.style.display = 'none'; });
+    aboutSection.style.display = 'flex';
+    movePill(aboutNav);
+});
+
+homeNav.addEventListener('click', (e) => {
+    e.preventDefault();
+    sectionsToHide.forEach(el => { if (el) el.style.display = ''; });
+    aboutSection.style.display = 'none';
+    movePill(homeNav);
+});
